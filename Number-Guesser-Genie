@@ -1,0 +1,94 @@
+//
+//  main.cpp
+//  This is a game that I created to guess a number that you're thinking of
+
+//
+//  Created by Andrew He on 9/25/18.
+//  Copyright © 2018 Andrew He. All rights reserved.
+//
+
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, const char * argv[]) {
+    /*
+     PLAN FOR THE GAME: USER THINKS OF AN INTEGER NUMBER AND INPUTS A RANGE GAME ASKS QUESTIONS UNTIL THE NUMBER IS FOUND
+     END CONDITIONS: GAME ENDS WHEN USER INPUTS 'Y' when the question 'is this your number?' is asked.
+    */
+    
+    char input = ' '; //To hold the inputs 'Y' or 'N' (or the lower case versions) representing yes and no
+    auto lowBound = 0; //To hold the lower bound for guessing
+    long highBound = 1000; //To hold the higher bound for guessing
+    
+    //Introduction to the player:
+    cout << "~~Welcome to the Number Guesser Genie!~~\n\n"
+         << "Please think of a number less than one thousand and greater than or equal to zero.\n"
+         << "Are you ready?\n"
+         << "Type 'Y' or 'N'." << endl << endl;
+    
+    //Taking Input (Ready to Begin?)
+    cin >> input;
+        if ((input == 'Y') || (input == 'y')) {
+            cout << "\nGreat! Time to begin.\n\n";
+        } else {
+            cerr << "\nAre you even following instructions? Try again.\n";
+            return -1;
+        }
+    
+    //Loops while the input is not YES to the final question:
+    while((input != 'Y') || (input != 'y')) {
+        //if the higher bound is lower than the lower bound, then there will be an error
+        if (highBound > lowBound) {
+            cout << "\nOkay! Is your number equal to " << lowBound << " or " << highBound << " or between " << lowBound << " and " << highBound << "?\n\n";
+            cin >> input;
+                if (((input == 'N') || (input == 'n')) && ((lowBound == 0) && highBound == 1000)) {
+                    cout << "\nYou didn't think of a number between 0 and 1,000. Try Again\n\n";
+                    return 0;
+                }
+                if ((input == 'Y') || (input == 'y')) {
+                    highBound = highBound - ((highBound - lowBound) / 2);
+                } else if ((input == 'N') || (input == 'n')) {
+                    long highBoundUpdate = highBound - lowBound;
+                    if (lowBound == 0) {
+                        highBound = highBoundUpdate * 2;
+                    } else {
+                        highBound = highBound + highBoundUpdate * 2;
+                    }
+                    lowBound = lowBound + highBoundUpdate;
+                }
+            //once the genie narrows it down to three numbers, he can start guessing
+            if(lowBound == highBound - 1) {
+                cout << "\nIs your number " << lowBound << "?\n\n";
+                cin >> input;
+                if ((input == 'N') || (input == 'n')) {
+                    cout << "\nIs your number " << highBound << "?\n\n";
+                    cin >> input;
+                    if ((input == 'N') || (input == 'n')) {
+                        cout << "\nIs your number " << highBound + 1 << "?\n\n";
+                        cin >> input;
+                        if ((input == 'N') || (input == 'n')) {
+                            cout << "\nStop lying to me. I know your number is either " << highBound << " or " << lowBound << ". Start Over.\n\n";
+                            return 0;
+                        } else {
+                            cout << "\nI knew it! Try me again, I'm too smart for you!" << endl;
+                            return 0;
+                        }
+                        
+                    } else {
+                        cout << "I knew it! Try me again, I'm too smart for you!" << endl;
+                        return 0;
+                    }
+                } else {
+                    cout << "I knew it! Try me again, I'm too smart for you!" << endl;
+                    return 0;
+                }
+            }
+        } else {
+            cout << "You must have made an error! The higher bound is lower than the lower bound!\n\n";
+            return 0;
+        }
+    }
+    
+    return 0;
+}
