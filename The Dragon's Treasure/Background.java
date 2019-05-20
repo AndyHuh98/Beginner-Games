@@ -1,0 +1,14 @@
+import java.awt.Graphics;
+
+public class Background extends Sprite {
+	public Background() {
+		super("background.png");
+		setX(0);
+		setY(0);
+	}
+	@Override
+	public void updateImage(Graphics g) {
+		g.drawImage(getImage(), getX(), getY(), 1000, 1000, null);
+	}
+
+}
