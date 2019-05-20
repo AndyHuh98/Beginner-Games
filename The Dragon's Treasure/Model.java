@@ -404,9 +404,9 @@ public class Model {
 			buriedTreasureCount = data.get(2);
 			arrow.setDamage(data.get(3));
 			dragonLevel = data.get(4);
-			dragon = new Dragon(dragonLevel);
 		} else {
 			System.out.println("File does not exist. Save game first!");
 		} 
 	}
 }
+
