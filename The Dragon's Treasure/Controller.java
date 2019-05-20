@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.File;
@@ -254,7 +253,5 @@ class Controller implements MouseListener, KeyListener
    
     public static synchronized void main(String[] args) throws Exception {
         new Controller();
-    }
-
-	
+    }	
 }
