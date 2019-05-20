@@ -23,6 +23,9 @@ public class Dragon extends Sprite {
 	
 	public Dragon(int level) {
 		super("Dragon" + level + ".png");
+		if (level > 3) {
+			setImage("Dragon3.png");
+		}
 		setMaxHealth(150 + 100 * level);
 		setDragonHealth(getDragonMaxHealth());
 	}
@@ -73,3 +76,4 @@ public class Dragon extends Sprite {
 		g.drawImage(getImage(), getX(), getY(), 350, 350, null);
 	}
 }
+
