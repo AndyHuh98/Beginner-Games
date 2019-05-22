@@ -106,48 +106,46 @@ class Controller implements MouseListener, KeyListener
 	    				model.getSprites().add(treasure);
 	    				model.spendTreasure();
 	    				try {
-							model.saveGame();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						model.saveGame();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 	    				
 	    				int reply = JOptionPane.showConfirmDialog(null, "Would you like to face the next dragon?", "Exit", JOptionPane.YES_NO_OPTION);
-	                    if (reply == JOptionPane.YES_OPTION) {
-	                      JOptionPane.showMessageDialog(null, "Good luck, adventurer.");
-	                      try {
-	                    	model.nextDragon();
-	                    	model.saveGame();
+					if (reply == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Good luck, adventurer.");
+					      	try {
+							model.nextDragon();
+							model.saveGame();
 							model = new Model();
-	                      } catch (IOException e1) {
+					      	} catch (IOException e1) {
 							e1.printStackTrace();
-	                      }
-	                    }
-	                    else {
-	                      JOptionPane.showMessageDialog(null, "Try your luck next time!");
-	                      System.exit(0);
-	                    }
+					      	}
+					} else {
+	                      			JOptionPane.showMessageDialog(null, "Try your luck next time!");
+	                      			System.exit(0);
+	                    		}
 	    			}	
     			} else {
     				int reply = JOptionPane.showConfirmDialog(null, "Would you like to face the next dragon?", "Exit", JOptionPane.YES_NO_OPTION);
-                    if (reply == JOptionPane.YES_OPTION) {
-                      JOptionPane.showMessageDialog(null, "Good luck, adventurer.");
-                      try {
-                    	model.nextDragon();
-                    	model.saveGame();
+                    		if (reply == JOptionPane.YES_OPTION) {
+			      		JOptionPane.showMessageDialog(null, "Good luck, adventurer.");
+                      			try {
+                    				model.nextDragon();
+                    				model.saveGame();
 						model = new Model();
-                      } catch (IOException e1) {
+                      			} catch (IOException e1) {
 						e1.printStackTrace();
-                      }
-                    }
-                    else {
-                      JOptionPane.showMessageDialog(null, "Try your luck next time!");
-                      System.exit(0);
-                    }
+                      			}
+                    		} else {
+                      			JOptionPane.showMessageDialog(null, "Try your luck next time!");
+                      			System.exit(0);
+                    		}
     			}
     		}
-    	}
-    	
+    	}	
     }
+    
     public void keyReleased(KeyEvent e) { }
     public synchronized void keyTyped(KeyEvent e) { 
     	if (model.getDragon().getDragonIsNotDead()) {
@@ -166,53 +164,51 @@ class Controller implements MouseListener, KeyListener
 	    		String healthMessage = String.format("HERO HEALTH: %d/%d%nDRAGON HEALTH: %d/%d%nDRAGON LEVEL: %d", model.getHero().getHeroCurrentHealth(), model.getHero().getHeroMaxHealth(), model.getDragon().getDragonCurrentHealth(), model.getDragon().getDragonMaxHealth(), model.getDragonLevel());
 	    		JOptionPane.showMessageDialog(null, healthMessage);
 	    		model.resumeGame();
-	            model.moveDragon();
-	            model.createNewFireball();
-	            Thread thread = new Thread(new ProjectileLauncher(model, view));
+	            	model.moveDragon();
+	            	model.createNewFireball();
+	            	Thread thread = new Thread(new ProjectileLauncher(model, view));
 	    		thread.start();
 	    	}
 	    	if (e.getKeyChar() == 'e') {
 	    		model.pauseGame();
 	    		int reply = JOptionPane.showConfirmDialog(null, "Would you like to exit the game?", "Exit", JOptionPane.YES_NO_OPTION);
-	            if (reply == JOptionPane.YES_OPTION) {
-	              JOptionPane.showMessageDialog(null, "Thank you for playing.");
-	              System.exit(0);
-	            }
-	            else {
-	               JOptionPane.showMessageDialog(null, "Continue the good fight and resume the game!");
-	               model.resumeGame();
-	               model.moveDragon();
-	               model.createNewFireball();
-	               Thread thread = new Thread(new ProjectileLauncher(model, view));
-	       		   thread.start();
-	            }
+	            	if (reply == JOptionPane.YES_OPTION) {
+	              		JOptionPane.showMessageDialog(null, "Thank you for playing.");
+	              		System.exit(0);
+	            	} else {
+			       JOptionPane.showMessageDialog(null, "Continue the good fight and resume the game!");
+			       model.resumeGame();
+			       model.moveDragon();
+			       model.createNewFireball();
+			       Thread thread = new Thread(new ProjectileLauncher(model, view));
+			       thread.start();
+	            	}
 	    	}
 	    	if (e.getKeyChar() == 'i') {
 	    		model.pauseGame();
 	    		JOptionPane.showMessageDialog(null, instructions);
 	    		model.resumeGame();
-	            model.moveDragon();
-	            model.createNewFireball();
-	            Thread thread = new Thread(new ProjectileLauncher(model, view));
+	            	model.moveDragon();
+	            	model.createNewFireball();
+	            	Thread thread = new Thread(new ProjectileLauncher(model, view));
 	    		thread.start();
 	    	} 
 	    	if (e.getKeyChar() == 's') {
 	    		model.pauseGame();
 	    		int reply = JOptionPane.showConfirmDialog(null, "Would you like to save the game?", "Save", JOptionPane.YES_NO_OPTION);
-	            if (reply == JOptionPane.YES_OPTION) {
-	            	try {
-						model.saveGame();
-						JOptionPane.showMessageDialog(null, "Game Saved.");
-						model.resumeGame();
-						model.moveDragon();
-						model.createNewFireball();
-			            Thread thread = new Thread(new ProjectileLauncher(model, view));
+	            	if (reply == JOptionPane.YES_OPTION) {
+	            		try {
+					model.saveGame();
+					JOptionPane.showMessageDialog(null, "Game Saved.");
+					model.resumeGame();
+					model.moveDragon();
+					model.createNewFireball();
+			           	Thread thread = new Thread(new ProjectileLauncher(model, view));
 			    		thread.start();
-					} catch (IOException evt) {
-						evt.printStackTrace();
-					}
-	            }
-	            else {
+				} catch (IOException evt) {
+					evt.printStackTrace();
+				}
+	            } else {
 	               JOptionPane.showMessageDialog(null, "No Problem!");  
 	               model.resumeGame();
 	               model.createNewFireball();
@@ -224,26 +220,25 @@ class Controller implements MouseListener, KeyListener
 	    	if (e.getKeyChar() == 'l') {
 	    		model.pauseGame();
 	    		int reply = JOptionPane.showConfirmDialog(null, "Would you like to load the last saved game?", "Load", JOptionPane.YES_NO_OPTION);
-	            if (reply == JOptionPane.YES_OPTION) {
-	            	try {
-	            		File file = new File("DragonTreasure.txt");
-						model.loadGame(file);
-						model = new Model();
-						view.repaint();
-						JOptionPane.showMessageDialog(null, "Game Loaded.");
-					} catch (IOException evt) {
-						evt.printStackTrace();
-					}
-	            }
-	            else {
-	               JOptionPane.showMessageDialog(null, "No Problem!"); 
-	               model.resumeGame();
-	               model.moveDragon();
-	               model.createNewFireball();
-	               Thread thread = new Thread(new ProjectileLauncher(model, view));
-	       		   thread.start();
-	            }
-	    	}
+	            	if (reply == JOptionPane.YES_OPTION) {
+	            		try {
+	            			File file = new File("DragonTreasure.txt");
+					model.loadGame(file);
+					model = new Model();
+					view.repaint();
+					JOptionPane.showMessageDialog(null, "Game Loaded.");
+				} catch (IOException evt) {
+					evt.printStackTrace();
+				}
+	        	} else {
+	               		JOptionPane.showMessageDialog(null, "No Problem!"); 
+	               		model.resumeGame();
+	               		model.moveDragon();
+	               		model.createNewFireball();
+	               		Thread thread = new Thread(new ProjectileLauncher(model, view));
+	       	       		thread.start();
+	        	}
+	   	}
     	} else if (!(model.getDragon().getDragonIsNotDead())) {
     		if (e.getKeyChar() == 'i') {
     			JOptionPane.showMessageDialog(null, instructions);  
