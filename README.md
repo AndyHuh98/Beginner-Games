@@ -9,3 +9,8 @@
 2. Craps Simulator:
   - Add actual GUI with dice rolling, table, dice physics, etc.
   
+3. Dragon Treasure:
+  - Create Storyline
+  - Add more dragons
+  - Fix loading/saving (make sure it's not easily editable to manipulate damage and level values)
+  
