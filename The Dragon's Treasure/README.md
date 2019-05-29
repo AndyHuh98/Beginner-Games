@@ -1,4 +1,4 @@
-The Dragon's Treasure is an "endless" game composed of two distinct locations - the Dragon's Cave and the Treasure Room.
+The Dragon's Treasure is an "endless" game composed of two distinct locations - the Dragon's Cave and the Treasure Room. The best way to understand this code is to look at it using the Model, View, Controller design pattern. The main method is in Controller.java
 
 # Basic Overview:
 This game supports:
